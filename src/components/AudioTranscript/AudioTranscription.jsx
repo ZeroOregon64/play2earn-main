@@ -8,16 +8,16 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 
 import 'react-toastify/dist/ReactToastify.css';
-import audio1 from './audio1.wav';
-import audio2 from './audio2.wav';
-import audio3 from './audio3.wav';
-import audio4 from './audio4.wav';
-import audio5 from './audio5.wav';
-import audio6 from './audio6.wav';
-import audio7 from './audio7.wav';
-import audio8 from './audio8.wav';
-import audio9 from './audio9.wav';
-import audio10 from './audio10.wav';
+import audio1 from "./Audios/audio1.wav";
+import audio2 from "./Audios/audio2.wav";
+import audio3 from "./Audios/audio3.wav";
+import audio4 from "./Audios/audio4.wav";
+import audio5 from "./Audios/audio5.wav";
+import audio6 from './Audios/audio6.wav';
+import audio7 from './Audios/audio7.wav';
+import audio8 from './Audios/audio8.wav';
+import audio9 from './Audios/audio9.wav';
+import audio10 from './Audios/audio10.wav';
 
 const tasks = [
   {
@@ -215,6 +215,10 @@ const App = () => {
         <div className="start-page">
           <h1 className="title-head">Audio Transcription Game</h1>
           <hr />
+          <p className='intro'>Prepare yourself for a unique challenge that blends listening precision with typing skills. 
+            In this game, you'll be tasked with transcribing audio clips into text. 
+            Pay close attention to every word, because accuracy is key! so stay alert, 
+            and let your fingers do the talking. Ready to showcase your transcription talents? Let's get started!</p>
           <button className="start-button" onClick={() => setLevelSelectVisible(true)}>Start</button>
         </div>
       ) : levelSelectVisible ? (
@@ -263,7 +267,7 @@ const App = () => {
           <hr />
           {lives > 0 ? (
             <>
-              <AudioPlayer src={tasks[currentTaskIndex].audioClip} />
+              <AudioPlayer audioSrc={tasks[currentLevel - 1].audioClip} />
               <textarea value={transcription} onChange={(e) => setTranscription(e.target.value)} />
               <button className="submit-button" onClick={checkTranscription}>Submit</button>
             </>

@@ -41,6 +41,16 @@
   text-shadow: 2px 2px 5px rgba(73, 0, 126, 0.712);
 }
 
+.audio-transcription-game p {
+  font-size: 30px;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
 .audio-transcription-game hr {
   border: none;
   border-top: 2px solid #ccc;
