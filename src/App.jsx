@@ -16,6 +16,8 @@ import AdminDashboard from "./components/Admin-dash/AdminDashboard";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import Survey from "./components/surveyTasks/survey";
 import Wordify from "./components/Wordify/Wordify";
+import WordCountChallenge from "./wizardTask/wordCountChallenge.jsx";
+
 
 const App = () => {
   return (
@@ -30,6 +32,7 @@ const App = () => {
           <Route path="/Wordify" element={<Wordify />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/Wizard" element={<WordCountChallenge />} />
           {/* Add other routes here */}
 
           {/* foorter routes */}
