@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
-        <Chatbox />
+        {/* <Chatbox /> */}
         <ScrollToTop />
       </div>
     </Router>
