@@ -1,0 +1,85 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    background-color: #1a237e;
+    color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .dashboard-title {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .profile-dropdown {
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 8px 0;
+    z-index: 1002;
+    min-width: 150px;
+    display: none;
+  }
+  
+  .profile-dropdown:hover .dropdown-menu{
+    display: block;
+  }
+  
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f5f9;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar-toggle {
+      display: block;
+    }
+  
+    .topbar {
+      padding-left: 60px;
+    }
+  }

@@ -1,0 +1,672 @@
+.wordify-app {
+  font-family: "Press Start 2P", cursive;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #000000, #0e001b, #020d47);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: hidden; /* Prevent body scroll */
+  height: 100vh; /* Take the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.wordify-app-header {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  color: #ffffff;
+  font-size: 24px;
+  text-shadow: 2px 2px 4px rgba(44, 73, 240, 0.6);
+}
+
+.wordify-main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.wordify-content {
+  overflow-y: auto; /* Allow scrolling in this container */
+  flex: 1; /* Take available space */
+  padding: 15px; /* Add padding for aesthetics */
+}
+
+.ai-words-container {
+  max-height: 200px; /* Set a max height for the AI words section */
+  overflow-y: auto; /* Allow scrolling within this container if content is too large */
+}
+
+.wordify-app h2,
+.wordify-app h1 {
+  color: #ffe600dc;
+  text-shadow: 2px 2px 4px rgba(255, 251, 0, 0.7);
+  margin-bottom: 15px;
+}
+
+.wordify-end-header {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.719);
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.wordify-end-para {
+  color: #b4ff77;
+  text-shadow: 2px 2px 4px rgb(61, 192, 0);
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.wordify-winner {
+  font-size: 64px;
+  color: #ffe600;
+  margin: 30px 0;
+  animation: wordify-trophy-shine 2s ease-in-out infinite;
+}
+
+.wordify-winner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: wordify-trophy-shine 2s ease-in-out infinite;
+}
+
+.wordify-winner svg {
+  font-size: 48px;
+}
+
+@keyframes wordify-trophy-shine {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px #ffe600);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px #ffe600);
+  }
+}
+
+.wordify-letter-container,
+.wordify-input-container,
+.wordify-parent-container,
+.wordify-start-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.wordify-letter {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  margin: 0 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(44, 73, 240, 0.6);
+  text-shadow: 2px 2px 4px rgba(44, 73, 240, 0.6);
+  font-size: 1.5em;
+  transition: transform 0.4s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.wordify-hidden {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.wordify-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wordify-input-container input {
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.wordify-submit-button {
+  font-size: 16px;
+  background-color: #ffe600;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: wordify-pulse 1.5s infinite;
+}
+
+.wordify-submit-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.05);
+}
+
+@keyframes wordify-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.wordify-next-button {
+  margin-right: 15px;
+  padding: 15px 30px;
+  background-color: #ffe600;
+  color: rgb(0, 0, 0);
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.wordify-next-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.1);
+}
+
+.wordify-words-container {
+  background: rgba(255, 255, 255, 0.1);
+  margin: 20px;
+  flex: 1;
+  padding: 20px;
+  min-width: 200px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.wordify-words-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.wordify-app h3 {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(44, 73, 240, 0.6);
+}
+
+.wordify-timerheader {
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wordify-timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 45px;
+  margin-top: 20px;
+}
+
+.wordify-hourglass {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #ffe600;
+  animation: wordify-hourglass-rotate 4s linear infinite;
+}
+
+.wordify-app h4 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 50px;
+  text-shadow: 2px 2px 4px rgba(44, 73, 240, 0.6);
+}
+
+@keyframes wordify-hourglass-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.wordify-start-button,
+.wordify-finish-button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #ffe600;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0px 0px 15px rgba(250, 221, 55, 0.882);
+  transition: all 0.3s ease;
+}
+
+.wordify-start-button:hover,
+.wordify-finish-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.05);
+}
+
+.wordify-start-button:active,
+.wordify-finish-button:active {
+  transform: scale(0.95);
+}
+
+.wordify-info,
+.wordify-levels-container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  margin: 20px auto;
+  text-align: center;
+}
+
+.wordify-levels-container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 35%;
+}
+
+.wordify-level-button {
+  position: relative;
+  padding: 10px;
+  height: 100px;
+  width: 100px;
+  font-size: 25px;
+  border: 3px solid #5136b1;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.wordify-level-button .wordify-icon {
+  position: absolute;
+  font-size: 24px;
+}
+
+.wordify-level-button.wordify-locked .wordify-icon {
+  color: #000000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wordify-level-button.wordify-completed .wordify-icon {
+  top: 10px;
+  left: 10px;
+  color: #333;
+}
+
+.wordify-level-button.wordify-current .wordify-icon {
+  top: 10px;
+  left: 10px;
+  color: #fffb00;
+}
+
+.wordify-level-button .wordify-level-number {
+  position: absolute;
+  font-size: 20px;
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.wordify-level-button.wordify-completed {
+  background-color: rgba(255, 230, 0, 0.5);
+  opacity: 0.7;
+  transform: scale(0.95);
+  cursor: not-allowed;
+  border-color: #ffe600;
+}
+
+.wordify-level-button.wordify-locked {
+  background-color: rgba(81, 54, 177, 0.5);
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.wordify-level-button.wordify-current {
+  border-color: #405cfa;
+  background-color: rgba(68, 96, 252, 0.7);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.wordify-level-button.wordify-current:hover {
+  transform: scale(1.1);
+}
+
+.wordify-title {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(44, 73, 240, 0.6);
+}
+
+.wordify-obj {
+  text-align: left;
+  color: #ffffff;
+}
+
+.wordify-app p {
+  color: #ffffff;
+  padding: 10px;
+  margin: 20px;
+}
+
+.wordify-button-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wordify-back-button,
+.wordify-exit-button {
+  position: absolute;
+  top: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.wordify-back-button {
+  left: 10px;
+}
+
+.wordify-exit-button {
+  right: 10px;
+}
+
+.wordify-exit-button:hover,
+.wordify-back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.wordify-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.wordify-popup {
+  background: #1a1a1a;
+  border: 2px solid #ffe600;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 80%;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(255, 230, 0, 0.3);
+  color: #fff;
+}
+
+.wordify-popup h3 {
+  color: #ffe600;
+  margin-top: 0;
+  text-shadow: 2px 2px 4px rgba(255, 230, 0, 0.3);
+}
+
+.wordify-popup p {
+  margin-bottom: 20px;
+}
+
+.wordify-popup-close {
+  background-color: #ffe600;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.wordify-popup-close:hover {
+  background-color: #ffd700;
+}
+
+.wordify-share-achievement {
+  margin-top: 20px;
+}
+
+.wordify-share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.wordify-share-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.wordify-share-button svg {
+  margin-right: 5px;
+}
+
+.wordify-twitter {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.wordify-whatsapp {
+  background-color: #25d366;
+  color: white;
+}
+
+.wordify-telegram {
+  background-color: #0088cc;
+  color: white;
+}
+
+.wordify-share-button:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .wordify-parent-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wordify-words-container {
+    width: 80%;
+  }
+
+  .wordify-input-container input {
+    width: 150px;
+  }
+
+  .wordify-info {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .wordify-start-button {
+    margin-top: 10px;
+  }
+
+  .wordify-levels-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .wordify-app-header h1 {
+    font-size: 20px;
+  }
+
+  .wordify-info {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .wordify-input-container input {
+    width: 120px;
+  }
+
+  .wordify-letter-container .wordify-letter {
+    font-size: 24px;
+  }
+
+  .wordify-timer-container h4 {
+    font-size: 16px;
+  }
+
+  .wordify-words-list {
+    font-size: 14px;
+  }
+
+  .wordify-start-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .wordify-levels-container {
+    width: 90%;
+  }
+
+  .wordify-level-button {
+    height: 80px;
+    width: 80px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .wordify-app-header h1 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .wordify-info {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .wordify-input-container input {
+    width: 100px;
+  }
+
+  .wordify-letter-container .wordify-letter {
+    font-size: 16px;
+  }
+
+  .wordify-timer-container h4 {
+    font-size: 14px;
+  }
+
+  .wordify-words-list {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .wordify-start-button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .wordify-levels-container {
+    width: 95%;
+  }
+
+  .wordify-level-button {
+    height: 60px;
+    width: 60px;
+    font-size: 16px;
+  }
+
+  .wordify-share-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.wordify-app input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wordify-app button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wordify-app :focus {
+  outline: 2px solid #ffe600;
+}
+
+.wordify-app-header h1 {
+  animation: wordify-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes wordify-glow {
+  from {
+    text-shadow: 0 0 5px #ffe600, 0 0 10px #ffe600;
+  }
+  to {
+    text-shadow: 0 0 10px #ffe600, 0 0 20px #ffe600;
+  }
+}

@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Orbitron:wght@400..900&display=swap');
+
+/* General Styling */
+.ttg-wrapper {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background: url('background1.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Reset default box model and margin/padding */
+.ttg-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Unified Container styles */
+.ttg-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #90caf9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+    margin-top: 40px;
+}
+
+/* Heading and text styles */
+.ttg-container h1,
+.ttg-container h2,
+.ttg-container h3,
+.ttg-container p,
+.ttg-container button {
+    font-size: 30px;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+}
+
+.ttg-container h1 {
+    color: #e9f8f6;
+    font-family: 'Jersey 10', sans-serif;
+    font-weight: 400;
+}
+
+.ttg-container h2 {
+    color: #0237ab;
+}
+
+.ttg-container p {
+    color: #0237ab;
+}
+
+/* Text Area */
+.ttg-container #taggable-text {
+    cursor: pointer;
+    background: none;
+    padding: 20px;
+    border: none;
+    color: blue;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.ttg-container .clickable-word {
+    cursor: pointer;
+    display: inline;
+    color: grey;
+    font-size: 30px;
+}
+
+.ttg-container .clickable-word:hover {
+    color: blue;
+}
+
+.ttg-container .selected {
+    background-color: #90caf9;
+    font-weight: bold;
+}
+
+.ttg-container .clicked {
+    color: grey;
+}
+
+/* Sections within the container */
+.ttg-container #instructions,
+.ttg-container #game-container,
+.ttg-container #level-container,
+.ttg-container #text-container,
+.ttg-container #selection-and-tagging,
+.ttg-container #submit-section,
+.ttg-container #token-counter,
+.ttg-container #feedback {
+    margin-bottom: 20px;
+}
+
+/* Selected Text and Tagging Section */
+.ttg-container #selection-and-tagging {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Submit Section */
+.ttg-container #submit-section {
+    text-align: center;
+}
+
+.ttg-container #submit-btn,
+.ttg-container #next-level-btn,
+.ttg-container .play-button,
+.ttg-container .retry-button,
+.ttg-container .levels-button,
+.ttg-container .submit-button,
+.ttg-container .next-level-button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 0 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #submit-btn:hover,
+.ttg-container #next-level-btn:hover,
+.ttg-container .play-button:hover,
+.ttg-container .retry-button:hover,
+.ttg-container .levels-button:hover,
+.ttg-container .submit-button:hover,
+.ttg-container .next-level-button:hover {
+    background-color: #0056b3;
+}
+
+/* Feedback Section */
+.ttg-container #feedback {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.ttg-container #feedback-message {
+    font-size: 30px;
+    color: #333;
+}
+
+.ttg-container #feedback-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ttg-container .feedback-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+}
+
+.ttg-container .feedback-item span {
+    flex: 1;
+}
+
+/* Dropdown Box */
+.ttg-container .tag-select {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+/* Loading Screen */
+.ttg-container #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ttg-container .spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: ttg-spin 0.9s infinite ease-in-out;
+    margin-bottom: 20px;
+}
+
+@keyframes ttg-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Levels Page */
+.ttg-container #levels-page {
+    text-align: center;
+}
+
+.ttg-container .levels-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+.ttg-container .levels-list li {
+    margin: 0;
+}
+
+.ttg-container .levels-list button {
+    padding: 20px 40px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    border-radius: 6px;
+    background-color: #007bff;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container .levels-list button:hover {
+    background-color: #0056b3;
+}
+
+/* Instructions Section */
+.ttg-container #instructions {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.ttg-container #instructions button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #instructions button:hover {
+    background-color: #0056b3;
+}
+
+/* Menu Container */
+.ttg-container #menu-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ttg-container #menu-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #menu-container button:hover {
+    background-color: #0056b3;
+}
+
+.ttg-container #actions-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #actions-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Timer Container */
+.ttg-container #timer-container {
+    text-align: center;
+}
+
+.ttg-container #timer-container p {
+    font-size: 30px;
+    color: #333;
+}
+
+.ttg-container #timer-expired-container {
+    text-align: center;
+}
+
+.ttg-container #timer-expired-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}   
+
+.ttg-container #timer-expired-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Feedback Container */
+.ttg-container #feedback-container {
+    text-align: center;
+}
+
+.ttg-container #feedback-container p {
+    font-size: 30px;
+    color: #333;
+}
+
+.ttg-container #feedback-message {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Tokens Container */
+.ttg-container #tokens-container {
+    text-align: center;
+}
+
+.ttg-container #tokens-container p {
+    font-size: 30px;
+    color: #333;
+}
+
+/* Next Level Container */
+.ttg-container #next-level-container {
+    text-align: center;
+}
+
+.ttg-container #next-level-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #next-level-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Retry Container */
+.ttg-container #retry-container {
+    text-align: center;
+}
+
+.ttg-container #retry-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #retry-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Game Over Container */
+.ttg-container #game-over-container {
+    text-align: center;
+}
+
+.ttg-container #game-over-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #game-over-container button:hover {
+    background-color: #0056b3;
+}
+
+.ttg-container #levels-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ttg-container #levels-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}   
+
+.ttg-container #levels-container button:hover {
+    background-color: #0056b3;
+}   
+
+.ttg-container #save-exit-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #save-exit-container button:hover {
+    background-color: #0056b3;
+}
+
+.ttg-container #lives-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.ttg-container #game-completed-container {
+    text-align: center;
+}
+
+.ttg-container #game-completed-container button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ttg-container #game-completed-container button:hover {
+    background-color: #0056b3;
+}
+  
+.ttg-container .heart {
+    font-size: 24px;
+    margin-right: 5px;
+}
+  
+.ttg-container .heart.inactive {
+    color: grey; /* or any color for inactive hearts */
+}
+  
+.ttg-container .heart.active {
+    color: red;
+}

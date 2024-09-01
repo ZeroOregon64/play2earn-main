@@ -1,0 +1,323 @@
+.task-management {
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-container,
+.category-filter {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.search-input,
+.category-filter select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.task-table th {
+  background-color: #f0f5f9;
+  font-weight: bold;
+}
+
+.task-table tr {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-primary {
+  background-color: #2196f3;
+  color: white;
+}
+
+.btn-main {
+  background-color: #2196f3;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #1a237e;
+  color: white;
+}
+
+.add-task-form {
+  margin-top: 30px;
+  background-color: #f0f5f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .search-container,
+  .category-filter {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .task-table {
+    font-size: 14px;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .add-task-form {
+    padding: 15px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+/* CSS for Task Management Component */
+.task-management {
+  padding: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.task-table th,
+.task-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.task-table th {
+  background-color: #f2f2f2;
+}
+
+.btn-main {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-main:hover {
+  background-color: #45a049;
+}
+
+.table-responsive {
+  margin-bottom: 20px;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-task-form .form-group {
+  margin-bottom: 15px;
+}
+
+.add-task-form .form-group.full-width {
+  width: 100%;
+}
+
+.add-task-form input,
+.add-task-form select,
+.add-task-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-task-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-task-form button:hover {
+  background-color: #45a049;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.delete-confirmation {
+  position: flex;
+  padding-right: 12px;
+  color: white;
+}
+
+.task-table {
+  position: relative;
+  z-index: 2; /* Ensure this table is above other content */
+}
+
+/* Add space below the table if pagination or other elements are causing issues */
+.task-table tbody tr:last-child td {
+  padding-bottom: 20px; /* Adjust this value if necessary */
+}
+
+/* Example to fix pagination overlapping */
+.pagination {
+  position: relative;
+  z-index: 1; /* Ensure pagination is below the table */
+}
+
+/* Modal or other popups should have a higher z-index */
+.delete-confirmation-modal {
+  position: absolute;
+  z-index: 999; /* Ensure modals appear above other content */
+}

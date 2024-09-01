@@ -1,0 +1,1053 @@
+[
+  {
+    "letters": ["A", "T", "B", "A", "N", "O"],
+    "words": ["ban", "tan", "bat", "ton", "boa", "ant", "bot"],
+    "difficulty": 1
+  },
+  {
+    "letters": ["U", "D", "E", "B", "C", "A"],
+    "words": ["bed", "ace", "due", "bad", "cab", "cub", "bud", "dab"],
+    "difficulty": 1
+  },
+  {
+    "letters": ["I", "R", "A", "B", "A", "E"],
+    "words": ["air", "bar", "era", "ear", "are", "rib"],
+    "difficulty": 1
+  },
+  {
+    "letters": ["D", "A", "L", "I", "B", "A"],
+    "words": ["lad", "bid", "lid", "aid", "bad", "lab", "dab"],
+    "difficulty": 1
+  },
+  {
+    "letters": ["B", "R", "J", "E", "U", "A"],
+    "words": ["jar", "bar", "are", "era", "ear", "rub"],
+    "difficulty": 1
+  },
+  {
+    "letters": ["A", "E", "P", "N", "R", "Z"],
+    "words": ["per", "ran", "era", "ear", "pan", "pen", "zen"],
+    "difficulty": 1
+  },
+
+  {
+    "letters": ["A", "D", "T", "B", "U", "C"],
+    "words": ["cat", "cut", "bat", "bad", "cab", "tub", "act", "dab"],
+    "difficulty": 2
+  },
+  {
+    "letters": ["A", "I", "T", "E", "C", "C"],
+    "words": ["cat", "ace", "tea", "ate", "ice", "tie", "eat", "act"],
+    "difficulty": 2
+  },
+  {
+    "letters": ["A", "R", "B", "D", "I", "A"],
+    "words": ["air", "bar", "bid", "aid", "bad", "rid", "dab"],
+    "difficulty": 2
+  },
+  {
+    "letters": ["P", "C", "A", "E", "J", "T"],
+    "words": [
+      "pat",
+      "ace",
+      "tea",
+      "ate",
+      "jet",
+      "act",
+      "eat",
+      "pet",
+      "cat",
+      "tap",
+      "cap"
+    ],
+    "difficulty": 2
+  },
+  {
+    "letters": ["E", "N", "A", "T", "A", "I"],
+    "words": ["tea", "tan", "ten", "net", "ate", "tin", "tie", "eat", "nit"],
+    "difficulty": 2
+  },
+  {
+    "letters": ["U", "N", "F", "A", "H", "S"],
+    "words": ["has", "ash", "fan", "fun", "sun"],
+    "difficulty": 2
+  },
+
+  {
+    "letters": ["E", "O", "H", "T", "P", "I"],
+    "words": [
+      "hip",
+      "pie",
+      "hit",
+      "pit",
+      "toe",
+      "top",
+      "tie",
+      "pet",
+      "hot",
+      "tip",
+      "pot"
+    ],
+    "difficulty": 3
+  },
+  {
+    "letters": ["I", "L", "G", "D", "B", "E"],
+    "words": [
+      "bed",
+      "big",
+      "die",
+      "dig",
+      "leg",
+      "bid",
+      "beg",
+      "lid",
+      "led",
+      "lie"
+    ],
+    "difficulty": 3
+  },
+  {
+    "letters": ["O", "D", "N", "T", "P", "A"],
+    "words": [
+      "dot",
+      "tan",
+      "pad",
+      "pan",
+      "nod",
+      "ton",
+      "pot",
+      "top",
+      "tap",
+      "apt"
+    ],
+    "difficulty": 3
+  },
+  {
+    "letters": ["C", "T", "R", "Y", "A", "H"],
+    "words": [
+      "cat",
+      "thy",
+      "rat",
+      "car",
+      "cry",
+      "hat",
+      "art",
+      "hay",
+      "arc",
+      "try",
+      "act"
+    ],
+    "difficulty": 3
+  },
+  {
+    "letters": ["G", "I", "O", "T", "P", "E"],
+    "words": [
+      "got",
+      "get",
+      "pie",
+      "pit",
+      "toe",
+      "ego",
+      "top",
+      "tie",
+      "pet",
+      "tip",
+      "pot",
+      "pig"
+    ],
+    "difficulty": 3
+  },
+  {
+    "letters": ["L", "O", "D", "G", "T", "E"],
+    "words": [
+      "got",
+      "dot",
+      "log",
+      "dog",
+      "god",
+      "get",
+      "old",
+      "leg",
+      "let",
+      "lot",
+      "toe",
+      "ego",
+      "led"
+    ],
+    "difficulty": 3
+  },
+
+  {
+    "letters": ["R", "A", "B", "E", "A", "S"],
+    "words": [
+      "sea",
+      "area",
+      "base",
+      "bare",
+      "bar",
+      "era",
+      "ear",
+      "bear",
+      "are",
+      "sear",
+      "bars"
+    ],
+    "difficulty": 4
+  },
+  {
+    "letters": ["Z", "N", "A", "I", "Y", "R"],
+    "words": ["rain", "yarn", "airy", "air", "ran", "any", "zany"],
+    "difficulty": 4
+  },
+  {
+    "letters": ["S", "Y", "A", "M", "Z", "E"],
+    "words": ["sea", "maze", "say", "easy", "yes", "seam", "may", "same"],
+    "difficulty": 4
+  },
+  {
+    "letters": ["E", "S", "T", "O", "Z", "R"],
+    "words": [
+      "tore",
+      "rose",
+      "zero",
+      "sore",
+      "rest",
+      "set",
+      "toe",
+      "sort",
+      "rot"
+    ],
+    "difficulty": 4
+  },
+  {
+    "letters": ["Z", "T", "N", "E", "O", "I"],
+    "words": ["ten", "note", "net", "tone", "ton", "toe", "tin", "tie", "zone"],
+    "difficulty": 4
+  },
+  {
+    "letters": ["I", "H", "T", "R", "E", "Z"],
+    "words": ["hire", "hit", "heir", "tire", "tie", "her", "tier"],
+    "difficulty": 4
+  },
+
+  {
+    "letters": ["E", "L", "A", "A", "T", "B"],
+    "words": [
+      "tea",
+      "tale",
+      "able",
+      "ate",
+      "beat",
+      "let",
+      "late",
+      "bat",
+      "bet",
+      "belt",
+      "eat"
+    ],
+    "difficulty": 5
+  },
+  {
+    "letters": ["B", "E", "U", "D", "A", "L"],
+    "words": [
+      "bed",
+      "able",
+      "lead",
+      "due",
+      "lad",
+      "blue",
+      "dual",
+      "deal",
+      "led",
+      "bad",
+      "dab"
+    ],
+    "difficulty": 5
+  },
+  {
+    "letters": ["E", "H", "L", "T", "C", "A"],
+    "words": [
+      "tea",
+      "heat",
+      "late",
+      "ace",
+      "tale",
+      "hat",
+      "hate",
+      "let",
+      "eat",
+      "ate",
+      "lace",
+      "halt",
+      "cat",
+      "act"
+    ],
+    "difficulty": 5
+  },
+  {
+    "letters": ["I", "A", "C", "L", "Y", "D"],
+    "words": [
+      "laid",
+      "clad",
+      "lady",
+      "icy",
+      "lad",
+      "clay",
+      "acid",
+      "idly",
+      "lay",
+      "lid",
+      "aid",
+      "day"
+    ],
+    "difficulty": 5
+  },
+  {
+    "letters": ["A", "O", "A", "E", "R", "C"],
+    "words": [
+      "ace",
+      "area",
+      "care",
+      "car",
+      "core",
+      "era",
+      "ear",
+      "arc",
+      "race",
+      "acre"
+    ],
+    "difficulty": 5
+  },
+  {
+    "letters": ["A", "S", "C", "O", "E", "R"],
+    "words": [
+      "sea",
+      "ace",
+      "rose",
+      "care",
+      "sore",
+      "scar",
+      "car",
+      "case",
+      "core",
+      "era",
+      "ear",
+      "arc",
+      "race",
+      "acre"
+    ],
+    "difficulty": 5
+  },
+
+  {
+    "letters": ["E", "B", "R", "A", "A", "T"],
+    "words": [
+      "area",
+      "rat",
+      "tea",
+      "tear",
+      "ate",
+      "bare",
+      "bate",
+      "beat",
+      "brat",
+      "abet",
+      "tab",
+      "art",
+      "bar",
+      "rate",
+      "bat",
+      "era",
+      "bet",
+      "ear",
+      "bear",
+      "eat",
+      "berate"
+    ],
+    "difficulty": 6
+  },
+  {
+    "letters": ["E", "B", "D", "A", "R", "I"],
+    "words": [
+      "bare",
+      "ride",
+      "air",
+      "rid",
+      "dare",
+      "bar",
+      "red",
+      "aid",
+      "bid",
+      "ear",
+      "bed",
+      "raid",
+      "aide",
+      "die",
+      "idea",
+      "read",
+      "era",
+      "dear",
+      "bear",
+      "bird",
+      "bad",
+      "dab",
+      "bread",
+      "dab"
+    ],
+    "difficulty": 6
+  },
+  {
+    "letters": ["A", "E", "R", "Y", "T", "H"],
+    "words": [
+      "tea",
+      "yeah",
+      "heat",
+      "art",
+      "try",
+      "hear",
+      "thy",
+      "hat",
+      "hate",
+      "eat",
+      "rat",
+      "ate",
+      "rate",
+      "ear",
+      "year",
+      "tray",
+      "yet",
+      "tear",
+      "era",
+      "hay"
+    ],
+    "difficulty": 6
+  },
+  {
+    "letters": ["Y", "N", "A", "E", "R", "D"],
+    "words": [
+      "earn",
+      "yard",
+      "ran",
+      "dean",
+      "dare",
+      "yarn",
+      "red",
+      "ear",
+      "year",
+      "deny",
+      "dry",
+      "read",
+      "end",
+      "era",
+      "near",
+      "dear",
+      "day",
+      "are"
+    ],
+    "difficulty": 6
+  },
+  {
+    "letters": ["T", "R", "W", "S", "I", "E"],
+    "words": [
+      "writ",
+      "wise",
+      "west",
+      "rest",
+      "sew",
+      "set",
+      "wit",
+      "wet",
+      "site",
+      "tire",
+      "rise",
+      "sir",
+      "wire",
+      "sit",
+      "tie",
+      "stir"
+    ],
+    "difficulty": 6
+  },
+  {
+    "letters": ["D", "N", "W", "T", "E", "O"],
+    "words": [
+      "went",
+      "dot",
+      "ten",
+      "net",
+      "note",
+      "owe",
+      "tend",
+      "wet",
+      "nod",
+      "tone",
+      "newt",
+      "ton",
+      "toe",
+      "end",
+      "town",
+      "done"
+    ],
+    "difficulty": 6
+  },
+
+  {
+    "letters": ["M", "R", "L", "Y", "A", "O"],
+    "words": ["moral", "oral", "army", "mayor", "roam", "arm", "lay", "royal"],
+    "difficulty": 7
+  },
+  {
+    "letters": ["N", "N", "O", "E", "C", "A"],
+    "words": [
+      "con",
+      "ace",
+      "non",
+      "neon",
+      "cone",
+      "none",
+      "ocean",
+      "cane",
+      "canoe"
+    ],
+    "difficulty": 7
+  },
+  {
+    "letters": ["L", "A", "E", "N", "G", "A"],
+    "words": ["age", "lane", "algae", "lean", "leg", "angel", "angle", "gala"],
+    "difficulty": 7
+  },
+  {
+    "letters": ["B", "E", "A", "I", "L", "L"],
+    "words": [
+      "ill",
+      "able",
+      "liable",
+      "bail",
+      "ball",
+      "bell",
+      "label",
+      "bill",
+      "lie"
+    ],
+    "difficulty": 7
+  },
+  {
+    "letters": ["E", "R", "I", "T", "W", "R"],
+    "words": ["writer", "writ", "wit", "wet", "tire", "wire", "write", "tie"],
+    "difficulty": 7
+  },
+  {
+    "letters": ["V", "C", "O", "E", "R", "T"],
+    "words": [
+      "tore",
+      "vote",
+      "vector",
+      "core",
+      "overt",
+      "toe",
+      "cover",
+      "veto",
+      "rot"
+    ],
+    "difficulty": 7
+  },
+
+  {
+    "letters": ["E", "L", "N", "Y", "A", "D"],
+    "words": [
+      "deny",
+      "lady",
+      "lead",
+      "lane",
+      "lend",
+      "lean",
+      "lad",
+      "laden",
+      "land",
+      "end",
+      "delay",
+      "lay",
+      "deal",
+      "day",
+      "led",
+      "dean"
+    ],
+    "difficulty": 8
+  },
+  {
+    "letters": ["S", "D", "I", "V", "A", "E"],
+    "words": [
+      "sea",
+      "side",
+      "sad",
+      "aide",
+      "die",
+      "advise",
+      "aside",
+      "save",
+      "idea",
+      "via",
+      "dive",
+      "saved",
+      "aid"
+    ],
+    "difficulty": 8
+  },
+  {
+    "letters": ["A", "L", "R", "G", "E", "A"],
+    "words": [
+      "area",
+      "age",
+      "algae",
+      "leg",
+      "rag",
+      "gala",
+      "era",
+      "rage",
+      "ear",
+      "real",
+      "glare",
+      "gear",
+      "large"
+    ],
+    "difficulty": 8
+  },
+  {
+    "letters": ["F", "R", "I", "T", "D", "A"],
+    "words": [
+      "raid",
+      "rat",
+      "fat",
+      "art",
+      "air",
+      "dirt",
+      "far",
+      "drift",
+      "fair",
+      "fit",
+      "draft",
+      "aid",
+      "rid"
+    ],
+    "difficulty": 8
+  },
+  {
+    "letters": ["R", "F", "E", "O", "W", "L"],
+    "words": [
+      "lower",
+      "lore",
+      "flow",
+      "flew",
+      "flower",
+      "owe",
+      "wore",
+      "role",
+      "low",
+      "row",
+      "foe",
+      "fore"
+    ],
+    "difficulty": 8
+  },
+  {
+    "letters": ["E", "L", "R", "D", "O", "W"],
+    "words": [
+      "lower",
+      "lord",
+      "rode",
+      "lore",
+      "owe",
+      "old",
+      "word",
+      "wore",
+      "role",
+      "red",
+      "low",
+      "world",
+      "row",
+      "led",
+      "older",
+      "drew"
+    ],
+    "difficulty": 8
+  },
+
+  {
+    "letters": ["A", "S", "E", "L", "V", "T"],
+    "words": [
+      "sea",
+      "least",
+      "sale",
+      "tea",
+      "vast",
+      "tale",
+      "east",
+      "lest",
+      "save",
+      "ate",
+      "set",
+      "tale",
+      "let",
+      "late",
+      "sat",
+      "salt",
+      "seat",
+      "last",
+      "slave",
+      "eat",
+      "seal"
+    ],
+    "difficulty": 9
+  },
+  {
+    "letters": ["E", "R", "I", "T", "A", "C"],
+    "words": [
+      "tea",
+      "car",
+      "art",
+      "air",
+      "tire",
+      "ace",
+      "arc",
+      "tie",
+      "acre",
+      "eat",
+      "rat",
+      "care",
+      "ate",
+      "rate",
+      "ear",
+      "ice",
+      "race",
+      "cat",
+      "tear",
+      "react",
+      "trace",
+      "era",
+      "cite",
+      "rice",
+      "act"
+    ],
+    "difficulty": 9
+  },
+  {
+    "letters": ["R", "S", "I", "O", "T", "P"],
+    "words": [
+      "top",
+      "trio",
+      "stop",
+      "riot",
+      "sport",
+      "trip",
+      "pit",
+      "sort",
+      "top",
+      "sir",
+      "sit",
+      "post",
+      "port",
+      "spot",
+      "spit",
+      "rot",
+      "stir",
+      "tip",
+      "pro",
+      "pot",
+      "strip"
+    ],
+    "difficulty": 9
+  },
+  {
+    "letters": ["E", "O", "T", "S", "W", "R"],
+    "words": [
+      "tore",
+      "rose",
+      "west",
+      "sore",
+      "rest",
+      "wrote",
+      "sew",
+      "owe",
+      "set",
+      "wet",
+      "wore",
+      "toe",
+      "sort",
+      "swore",
+      "tower",
+      "rot",
+      "row",
+      "worse",
+      "store",
+      "worst"
+    ],
+    "difficulty": 9
+  },
+  {
+    "letters": ["N", "A", "E", "T", "L", "O"],
+    "words": [
+      "loan",
+      "tea",
+      "alone",
+      "ten",
+      "note",
+      "late",
+      "lot",
+      "tale",
+      "net",
+      "lone",
+      "lean",
+      "let",
+      "ton",
+      "tonal",
+      "eat",
+      "tan",
+      "ate",
+      "lane",
+      "tone",
+      "toe",
+      "neat"
+    ],
+    "difficulty": 9
+  },
+  {
+    "letters": ["E", "S", "L", "I", "N", "T"],
+    "words": [
+      "slit",
+      "nest",
+      "ten",
+      "lest",
+      "net",
+      "listen",
+      "line",
+      "set",
+      "site",
+      "let",
+      "list",
+      "lens",
+      "silent",
+      "tile",
+      "tin",
+      "sit",
+      "tie",
+      "sent",
+      "sin",
+      "lie",
+      "lit"
+    ],
+    "difficulty": 9
+  },
+
+  {
+    "letters": ["L", "E", "B", "T", "S", "A"],
+    "words": [
+      "sea",
+      "tea",
+      "set",
+      "beat",
+      "late",
+      "bat",
+      "beast",
+      "salt",
+      "last",
+      "seat",
+      "table",
+      "sale",
+      "base",
+      "tale",
+      "tale",
+      "stable",
+      "let",
+      "sat",
+      "table",
+      "seal",
+      "eat",
+      "blast",
+      "east",
+      "lest",
+      "bat",
+      "ate",
+      "slab",
+      "best",
+      "least",
+      "able",
+      "bet",
+      "belt"
+    ],
+    "difficulty": 10
+  },
+  {
+    "letters": ["A", "N", "R", "T", "E", "S"],
+    "words": [
+      "sea",
+      "earn",
+      "tea",
+      "star",
+      "ten",
+      "set",
+      "art",
+      "ran",
+      "seat",
+      "serum",
+      "net",
+      "stare",
+      "sat",
+      "sent",
+      "eat",
+      "rat",
+      "tan",
+      "nest",
+      "east",
+      "rest",
+      "ate",
+      "rent",
+      "rate",
+      "ear",
+      "tear",
+      "stern",
+      "era",
+      "near",
+      "neat"
+    ],
+    "difficulty": 10
+  },
+  {
+    "letters": ["T", "C", "A", "L", "R", "E"],
+    "words": [
+      "tea",
+      "car",
+      "art",
+      "late",
+      "ace",
+      "tale",
+      "let",
+      "arc",
+      "acre",
+      "eat",
+      "alert",
+      "rat",
+      "care",
+      "ate",
+      "lace",
+      "rate",
+      "ear",
+      "race",
+      "alter",
+      "cat",
+      "tear",
+      "react",
+      "later",
+      "trace",
+      "era",
+      "real",
+      "clear",
+      "act"
+    ],
+    "difficulty": 10
+  },
+  {
+    "letters": ["C", "T", "E", "L", "R", "A"],
+    "words": [
+      "tea",
+      "car",
+      "art",
+      "late",
+      "ace",
+      "tale",
+      "let",
+      "arc",
+      "acre",
+      "eat",
+      "alert",
+      "rat",
+      "care",
+      "ate",
+      "lace",
+      "rate",
+      "ear",
+      "race",
+      "alter",
+      "cat",
+      "tear",
+      "react",
+      "later",
+      "trace",
+      "era",
+      "real",
+      "clear",
+      "act"
+    ],
+    "difficulty": 10
+  },
+  {
+    "letters": ["R", "H", "C", "T", "A", "E"],
+    "words": [
+      "chart",
+      "reach",
+      "tea",
+      "car",
+      "heat",
+      "art",
+      "teach",
+      "hear",
+      "ace",
+      "hat",
+      "hate",
+      "arc",
+      "acre",
+      "eat",
+      "arch",
+      "rat",
+      "care",
+      "ate",
+      "rate",
+      "heart",
+      "ear",
+      "race",
+      "cat",
+      "tear",
+      "react",
+      "trace",
+      "era",
+      "act",
+      "earth",
+      "chat",
+      "each"
+    ],
+    "difficulty": 10
+  },
+  {
+    "letters": ["E", "C", "T", "A", "L", "R"],
+    "words": [
+      "tea",
+      "car",
+      "art",
+      "late",
+      "ace",
+      "tale",
+      "let",
+      "arc",
+      "acre",
+      "eat",
+      "alert",
+      "rat",
+      "care",
+      "ate",
+      "lace",
+      "rate",
+      "ear",
+      "race",
+      "alter",
+      "cat",
+      "tear",
+      "react",
+      "later",
+      "trace",
+      "era",
+      "real",
+      "clear",
+      "act"
+    ],
+    "difficulty": 10
+  }
+]

@@ -1,0 +1,47 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: play2earn
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: aws-api
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: serverless-aws-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-north-1
+  memorySize: 512 # Increase if necessary
+  timeout: 90
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+
+package:
+  individually: true
+
+  exclude:
+    - node_modules/.cache/**
+    - .git/**
+    - .serverless/**
+    - .vscode/**
+    - README.md
+    - package-lock.json
+    - test/**
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+  - serverless-plugin-include-dependencies
+  - serverless-prune-plugin
+
+custom:
+  serverless-offline:
+    httpPort: 5002
+
+functions:
+  app:
+    handler: handler.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
