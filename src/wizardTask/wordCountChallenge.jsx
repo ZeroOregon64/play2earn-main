@@ -91,9 +91,13 @@ const WordCountChallenge = () => {
     });
   };
   const markLevelCompleted = (level) => {
+    if (completedLevels.includes(level)) return; // Prevent duplicates
+
     const updatedLevels = [...completedLevels, level];
     setCompletedLevels(updatedLevels);
     localStorage.setItem('completedLevels', JSON.stringify(updatedLevels));
+
+    setCurrentLevel(null); // Return to the home screen after completion
   };
 
   const renderHearts = () => {
