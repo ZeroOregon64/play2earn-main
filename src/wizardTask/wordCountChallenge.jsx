@@ -341,6 +341,22 @@ const GameScreen = ({
                 disabled={submitDisabled}
               />
             </label>
+            {isLevelTen && ( 
+              <label className="block">
+                <span className="text-lg font-semibold">
+                  Count the bonus word '{currentParagraph?.word2}':
+                </span>
+                <input
+                  type="number"
+                  name="word2"
+                  value={inputs.word2 || ""}
+                  onChange={handleInputChange}
+                  disabled={submitDisabled}
+                  className="mt-2 block w-full rounded-md bg-white/20 border-transparent focus:border-yellow-300 focus:bg-white/30 focus:ring-0 text-white placeholder-gray-300"
+                  placeholder="Enter your count"
+                />
+              </label>
+            )}
           </div>
           <div className="flex flex-wrap justify-center gap-4">
             <button
