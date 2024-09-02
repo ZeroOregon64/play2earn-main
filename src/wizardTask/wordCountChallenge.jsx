@@ -13,7 +13,7 @@ const WordCountChallenge = () => {
   const [completedLevels, setCompletedLevels] = useState([]);
   const [returnTimer, setReturnTimer] = useState(null);
   const [isTimeUp, setIsTimeUp] = useState(false);
-  const [submitDisabled, setSubmitDisabled] = useState(false);  // Added state
+  const [submitDisabled, setSubmitDisabled] = useState(false);  
 
   useEffect(() => {
     const storedLevels = JSON.parse(localStorage.getItem('completedLevels')) || [];
@@ -105,8 +105,14 @@ const WordCountChallenge = () => {
 
   const renderHearts = () => {
     const hearts = [];
-    for (let i = 0; i < lives; i++) hearts.push(<FaHeart key={i} className="heart full" />);
-    for (let i = lives; i < 3; i++) hearts.push(<FaHeart key={i} className="heart empty" />);
+    for (let i = 0; i < 3; i++) {
+      hearts.push(
+        <FaHeart
+          key={i}
+          className={`heart ${i < lives ? 'text-red-500' : 'text-white'}`} 
+        />
+      );
+    }
     return hearts;
   };
 
@@ -252,7 +258,7 @@ const GameScreen = ({
     try {
       const data = await submitAnswer(currentParagraph._id, {
         word1count: parseInt(inputs.word, 10),
-        word2count: 0 // Assuming word2count is not required; adjust as needed
+        word2count: 0 
       });
   
       if (data.correct) {
@@ -273,6 +279,7 @@ const GameScreen = ({
     } catch (error) {
       console.error('Error in handleSubmit:', error.message);
       setMessage(`The answer is incorrect. Try again!`);
+      setSubmitDisabled(false); // Allow retry after an incorrect answer
     }
   };
   
@@ -319,7 +326,8 @@ const GameScreen = ({
             Spell Chamber {level}
           </h2>
           <div className="flex gap-2">
-            {/* Render hearts or lives indicator here */}
+            {/* Render hearts (lives) */}
+            {renderHearts()}
           </div>
         </div>
         <div className="space-y-6">
