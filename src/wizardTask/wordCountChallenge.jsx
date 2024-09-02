@@ -69,7 +69,7 @@ const WordCountChallenge = () => {
   };
   const handleBackToHome = () => {
     setCurrentLevel(null);
-    setScore(0);
+    // No need to reset the score; it will persist across levels
   };
 
   const handleNextLevel = () => {
