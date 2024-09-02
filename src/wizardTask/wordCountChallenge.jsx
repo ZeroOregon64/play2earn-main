@@ -73,7 +73,10 @@ const WordCountChallenge = () => {
   };
 
   const handleNextLevel = () => {
-    if (currentLevel < 10) setCurrentLevel(currentLevel + 1);
+    if (currentLevel < 10) {
+      markLevelCompleted(currentLevel); // Lock the completed level
+      setCurrentLevel(currentLevel + 1); // Move to the next level
+    }
   };
 
   const handleTimeUp = () => {
