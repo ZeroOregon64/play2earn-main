@@ -164,29 +164,39 @@ const WordCountChallenge = () => {
   );
 };
 
-const HomeScreen = ({ onStartLevel, completedLevels }) => (
-  <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
-    <h1 className="text-5xl md:text-6xl font-bold mb-8 text-center animate-pulse">
-      Word Wizard Challenge
-    </h1>
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-      {[...Array(10)].map((_, index) => {
-        const level = index + 1;
-        const isCompleted = completedLevels.includes(level);
-        return (
-          <button
-            key={index}
-            onClick={() => onStartLevel(level)}
-            className={`bg-white/20 backdrop-blur-sm text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:bg-white/30 transition duration-300 ease-in-out transform hover:scale-105 ${isCompleted ? 'bg-gray-400 cursor-not-allowed' : ''}`}
-            disabled={isCompleted}
-          >
-            Level {level}
-          </button>
-        );
-      })}
+const HomeScreen = ({ onStartLevel, completedLevels }) => {
+  const maxUnlockedLevel = completedLevels.length + 1; // Only allow access to the next level
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
+      <h1 className="text-5xl md:text-6xl font-bold mb-8 text-center animate-pulse">
+        Word Wizard Challenge
+      </h1>
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {[...Array(10)].map((_, index) => {
+          const level = index + 1;
+          const isUnlocked = level === maxUnlockedLevel;
+
+          return (
+            <button
+              key={index}
+              onClick={() => isUnlocked && onStartLevel(level)}
+              className={`py-4 px-6 rounded-xl shadow-lg transition duration-300 ease-in-out transform ${
+                isUnlocked
+                  ? "bg-white/20 backdrop-blur-sm text-white font-semibold hover:bg-white/30 hover:scale-105"
+                  : "bg-gray-500 text-gray-300 cursor-not-allowed"
+              }`}
+              disabled={!isUnlocked} // Disable button if not unlocked
+            >
+              Level {level}
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
 
 const GameScreen = ({
   level,
