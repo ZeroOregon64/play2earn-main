@@ -115,6 +115,7 @@ const WordCountChallenge = () => {
         <HomeScreen
           onStartLevel={handleStartLevel}
           completedLevels={completedLevels}
+          totalPoints={totalPoints} 
         />
       ) : (
         <GameScreen
@@ -124,20 +125,21 @@ const WordCountChallenge = () => {
           onNextLevel={handleNextLevel}
           score={score}
           setScore={setScore}
+          totalPoints={totalPoints} 
+          setTotalPoints={setTotalPoints} 
           lives={lives}
           setLives={setLives}
           renderHearts={renderHearts}
           timer={timer}
           isTimeUp={isTimeUp}
-          onLevelComplete={() => markLevelCompleted(currentLevel)} 
+          onLevelComplete={() => markLevelCompleted(currentLevel)}
           returnTimer={returnTimer}
           submitDisabled={submitDisabled}
           setSubmitDisabled={setSubmitDisabled}
           setReturnTimer={setReturnTimer}
-          markLevelCompleted={markLevelCompleted} 
-          setCurrentLevel={setCurrentLevel}  
-          totalPoints={totalPoints} 
-          setTotalPoints={setTotalPoints} 
+          markLevelCompleted={markLevelCompleted}
+          setCurrentLevel={setCurrentLevel}
+          
         />
       )}
       {fetchError && (
@@ -149,13 +151,13 @@ const WordCountChallenge = () => {
   );
 };
 
-const HomeScreen = ({ onStartLevel, completedLevels }) => {
+const HomeScreen = ({ onStartLevel, completedLevels, totalPoints }) => {
   const initialMaxUnlockedLevel = Math.max(...completedLevels, 1);
   const [currentLevel, setCurrentLevel] = useState(initialMaxUnlockedLevel);
 
   // Function to determine if a level button should be unlocked
   const isLevelUnlocked = (level) => {
-    return level === 1 || completedLevels.includes(level - 1);
+    return level ===  0;
   };
 
   return (
@@ -165,16 +167,19 @@ const HomeScreen = ({ onStartLevel, completedLevels }) => {
       </h1>
       <div className="flex gap-4 mb-6">
         <button
-          onClick={() => onStartLevel(1)} 
+          onClick={() => onStartLevel(1)}
           className="py-4 px-6 rounded-xl shadow-lg bg-purple-400 text-white font-semibold hover:bg-purple-700"
         >
           Start Game
         </button>
       </div>
+      <div className="text-lg mb-6 text-white">
+        Total Points: {totalPoints}
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {[...Array(10)].map((_, index) => {
           const level = index + 1;
-          const isUnlocked = level === 0; 
+          const isUnlocked = isLevelUnlocked(level);
 
           return (
             <button
@@ -185,7 +190,7 @@ const HomeScreen = ({ onStartLevel, completedLevels }) => {
                   ? "bg-white/20 backdrop-blur-sm text-white font-semibold hover:bg-white/30 hover:scale-105"
                   : "bg-gray-500 text-gray-300 cursor-not-allowed"
               }`}
-              disabled={!isUnlocked} 
+              disabled={!isUnlocked}
             >
               Level {level}
             </button>
@@ -268,20 +273,26 @@ const GameScreen = ({
   };
 
   const handleIncorrectAnswer = (points) => {
-    setLives(prevLives => {
+    setLives((prevLives) => {
       const newLives = prevLives - 1;
+  
       if (newLives <= 0) {
         const newReturnTimer = Date.now() + 24 * 60 * 60 * 1000;
         setReturnTimer(newReturnTimer);
         localStorage.setItem('returnTimer', JSON.stringify(newReturnTimer));
+        
+        // Redirect to Home Screen when lives reach 0
+        setCurrentLevel(null); 
+        setSubmitDisabled(false);
       }
+  
       return newLives;
     });
-
-    setScore(prevScore => prevScore + points);
-    setTotalPoints(prevPoints => prevPoints + points); // Update totalPoints
-    setCorrectAnswers(prevCount => prevCount + 1);
-    setMessage('The answer is incorrect. Try again!');
+  
+    setScore((prevScore) => prevScore + points);
+    setTotalPoints((prevPoints) => prevPoints + points);
+    setCorrectAnswers((prevCount) => prevCount + 1);
+    setMessage("The answer is incorrect. Try again!");
     setSubmitDisabled(true);
   };
 
