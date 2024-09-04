@@ -13,13 +13,12 @@ const WordCountChallenge = () => {
   const [completedLevels, setCompletedLevels] = useState([]);
   const [returnTimer, setReturnTimer] = useState(null);
   const [isTimeUp, setIsTimeUp] = useState(false);
-  const [submitDisabled, setSubmitDisabled] = useState(false);  
+  const [submitDisabled, setSubmitDisabled] = useState(false);
+  const [totalPoints, setTotalPoints] = useState(0);
 
   useEffect(() => {
     const storedLevels = JSON.parse(localStorage.getItem('completedLevels')) || [];
     setCompletedLevels(storedLevels);
-    const storedReturnTimer = JSON.parse(localStorage.getItem('returnTimer'));
-    if (storedReturnTimer) setReturnTimer(storedReturnTimer);
   }, []);
 
   useEffect(() => {
@@ -53,29 +52,23 @@ const WordCountChallenge = () => {
     return () => clearInterval(intervalId);
   }, [currentLevel, lives, isTimeUp]);
 
+
   const handleStartLevel = (level) => {
-    // Commented out the wait logic
-    /*
-    if (returnTimer && Date.now() < returnTimer) {
-      alert('Please wait before starting a new game.');
-      return;
-    }
-    */
-    
-    // Proceed with setting the current level and resetting the timer
     setCurrentLevel(level);
     setTimer(60);
     setIsTimeUp(false);
   };
+
   const handleBackToHome = () => {
     setCurrentLevel(null);
-    // No need to reset the score; it will persist across levels
   };
 
   const handleNextLevel = () => {
-    if (currentLevel < 10) {
-      markLevelCompleted(currentLevel); // Lock the completed level
-      setCurrentLevel(currentLevel + 1); // Move to the next level
+    if (correctAnswers > 0) {
+      markLevelCompleted(level); // Make sure this updates the completedLevels state correctly
+      setCurrentLevel(level + 1);
+    } else {
+      setMessage("You need at least one correct spell to unlock the next level.");
     }
   };
 
@@ -87,21 +80,20 @@ const WordCountChallenge = () => {
       const newLives = prevLives - 1;
       if (newLives <= 0) {
         const newReturnTimer = Date.now() + 24 * 60 * 60 * 1000;
-        setReturnTimer(newReturnTimer); // This should now work
+        setReturnTimer(newReturnTimer);
         localStorage.setItem("returnTimer", JSON.stringify(newReturnTimer));
       }
       return newLives;
     });
   };
   const markLevelCompleted = (level) => {
-    if (completedLevels.includes(level)) return; // Prevent duplicates
-
-    const updatedLevels = [...completedLevels, level];
-    setCompletedLevels(updatedLevels);
-    localStorage.setItem('completedLevels', JSON.stringify(updatedLevels));
-
-    setCurrentLevel(null); // Return to the home screen after completion
+    setCompletedLevels((prevLevels) => {
+      const updatedLevels = [...prevLevels, level];
+      localStorage.setItem('completedLevels', JSON.stringify(updatedLevels));
+      return updatedLevels;
+    });
   };
+
 
   const renderHearts = () => {
     const hearts = [];
@@ -109,30 +101,13 @@ const WordCountChallenge = () => {
       hearts.push(
         <FaHeart
           key={i}
-          className={`heart ${i < lives ? 'text-red-500' : 'text-white'}`} 
+          className={`text-lg ${i < lives ? 'text-red-500' : 'text-white'}`} 
         />
       );
     }
     return hearts;
   };
 
-  const calculateCountdown = () => {
-    if (!returnTimer) return "24:00:00";
-
-    const remainingTime = returnTimer - Date.now();
-
-    if (remainingTime <= 0) {
-      // Cooldown period is over
-      return "00:00:00";
-    }
-
-    // Calculate hours, minutes, and seconds
-    const hours = Math.floor(remainingTime / (1000 * 60 * 60)).toString().padStart(2, '0');
-    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000).toString().padStart(2, '0');
-
-    return `${hours}:${minutes}:${seconds}`;
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
@@ -154,11 +129,15 @@ const WordCountChallenge = () => {
           renderHearts={renderHearts}
           timer={timer}
           isTimeUp={isTimeUp}
-          onLevelComplete={() => markLevelCompleted(currentLevel)}
+          onLevelComplete={() => markLevelCompleted(currentLevel)} 
           returnTimer={returnTimer}
-          calculateCountdown={calculateCountdown}
+          submitDisabled={submitDisabled}
           setSubmitDisabled={setSubmitDisabled}
-          setReturnTimer={setReturnTimer} 
+          setReturnTimer={setReturnTimer}
+          markLevelCompleted={markLevelCompleted} 
+          setCurrentLevel={setCurrentLevel}  
+          totalPoints={totalPoints} 
+          setTotalPoints={setTotalPoints} 
         />
       )}
       {fetchError && (
@@ -171,17 +150,31 @@ const WordCountChallenge = () => {
 };
 
 const HomeScreen = ({ onStartLevel, completedLevels }) => {
-  const maxUnlockedLevel = completedLevels.length + 1; // Only allow access to the next level
+  const initialMaxUnlockedLevel = Math.max(...completedLevels, 1);
+  const [currentLevel, setCurrentLevel] = useState(initialMaxUnlockedLevel);
+
+  // Function to determine if a level button should be unlocked
+  const isLevelUnlocked = (level) => {
+    return level === 1 || completedLevels.includes(level - 1);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
       <h1 className="text-5xl md:text-6xl font-bold mb-8 text-center animate-pulse">
         Word Wizard Challenge
       </h1>
+      <div className="flex gap-4 mb-6">
+        <button
+          onClick={() => onStartLevel(1)} 
+          className="py-4 px-6 rounded-xl shadow-lg bg-purple-400 text-white font-semibold hover:bg-purple-700"
+        >
+          Start Game
+        </button>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {[...Array(10)].map((_, index) => {
           const level = index + 1;
-          const isUnlocked = level === maxUnlockedLevel;
+          const isUnlocked = level === 0; 
 
           return (
             <button
@@ -192,7 +185,7 @@ const HomeScreen = ({ onStartLevel, completedLevels }) => {
                   ? "bg-white/20 backdrop-blur-sm text-white font-semibold hover:bg-white/30 hover:scale-105"
                   : "bg-gray-500 text-gray-300 cursor-not-allowed"
               }`}
-              disabled={!isUnlocked} // Disable button if not unlocked
+              disabled={!isUnlocked} 
             >
               Level {level}
             </button>
@@ -203,7 +196,6 @@ const HomeScreen = ({ onStartLevel, completedLevels }) => {
   );
 };
 
-
 const GameScreen = ({
   level,
   paragraphs,
@@ -211,6 +203,8 @@ const GameScreen = ({
   onNextLevel,
   score,
   setScore,
+  totalPoints, // Receive totalPoints
+  setTotalPoints, // Receive setTotalPoints
   lives,
   setLives,
   renderHearts,
@@ -218,10 +212,11 @@ const GameScreen = ({
   isTimeUp,
   onLevelComplete,
   returnTimer,
-  calculateCountdown,
   submitDisabled,
   setSubmitDisabled,
-  setReturnTimer 
+  setReturnTimer,
+  markLevelCompleted,
+  setCurrentLevel
 }) => {
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0);
   const [inputs, setInputs] = useState({});
@@ -239,94 +234,90 @@ const GameScreen = ({
     setSubmitDisabled(false);
   }, [level]);
 
-  useEffect(() => {
-    let intervalId;
-    if (returnTimer) {
-      intervalId = setInterval(() => {
-        setCountdown(calculateCountdown());
-      }, 1000);
-    }
-    return () => clearInterval(intervalId);
-  }, [returnTimer]);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInputs(prevInputs => ({ ...prevInputs, [name]: value }));
   };
 
   const handleSubmit = async () => {
+    if (lives <= 0) {
+      setMessage('You have no lives left. Please wait until the cooldown period is over.');
+      return;
+    }
+  
     try {
       const data = await submitAnswer(currentParagraph._id, {
         word1count: parseInt(inputs.word, 10),
-        word2count: 0 
+        word2count: isLevelTen ? parseInt(inputs.word2, 10) : 0
       });
   
       if (data.correct) {
-        // Correct answer logic
         setScore(prevScore => prevScore + data.points);
+        setTotalPoints(prevPoints => prevPoints + data.points); // Update totalPoints
         setCorrectAnswers(prevCount => prevCount + 1);
         setMessage(`Magic! You've earned ${data.points} mystical points!`);
-        setSubmitDisabled(true); // Disable submit after a correct answer
-  
-        // Check if all paragraphs are completed
-        if (currentParagraphIndex === paragraphs.length - 1) {
-          onLevelComplete(); // Complete the level
-        }
+        setSubmitDisabled(true);
       } else {
-        // Incorrect answer logic
         handleIncorrectAnswer(data.points);
       }
     } catch (error) {
       console.error('Error in handleSubmit:', error.message);
-      setMessage(`The answer is incorrect. Try again!`);
-      setSubmitDisabled(false); // Allow retry after an incorrect answer
+      setMessage('The answer is incorrect. Try again!');
+      setSubmitDisabled(false);
     }
   };
-  
+
   const handleIncorrectAnswer = (points) => {
-    // Update lives
     setLives(prevLives => {
       const newLives = prevLives - 1;
       if (newLives <= 0) {
-        // Start retry timer if lives are depleted
         const newReturnTimer = Date.now() + 24 * 60 * 60 * 1000;
-        setReturnTimer(newReturnTimer);  // This should work if passed correctly
+        setReturnTimer(newReturnTimer);
         localStorage.setItem('returnTimer', JSON.stringify(newReturnTimer));
       }
       return newLives;
     });
 
-    // Update score and correct answer count
     setScore(prevScore => prevScore + points);
+    setTotalPoints(prevPoints => prevPoints + points); // Update totalPoints
     setCorrectAnswers(prevCount => prevCount + 1);
-
-    // Display the incorrect message and disable submission
-    setMessage(`The answer is incorrect. Try again!`);
-    setSubmitDisabled(true);  // Disable submit after an incorrect answer
+    setMessage('The answer is incorrect. Try again!');
+    setSubmitDisabled(true);
   };
 
-
   const handleNextParagraph = () => {
-    setSubmitDisabled(false);
-    setCurrentParagraphIndex(prevIndex => prevIndex + 1);
-    setInputs({});
-    setMessage("");
+    if (currentParagraphIndex < paragraphs.length - 1) {
+      setSubmitDisabled(false);
+      setCurrentParagraphIndex(prevIndex => prevIndex + 1);
+      setInputs({});
+      setMessage("");
+    } else {
+      setMessage("This was the last scroll in this chamber.");
+    }
   };
 
   const handleNextLevel = () => {
-    if (correctAnswers > 0) onNextLevel();
-    else setMessage("You need at least one correct spell to unlock the next level.");
+    if (correctAnswers > 0) {
+      markLevelCompleted(level); // Ensure this function updates the `completedLevels` correctly
+      setCurrentLevel(level + 1);
+    } else {
+      setMessage("You need at least one correct spell to unlock the next level.");
+    }
   };
+
+  const isNextLevelEnabled = correctAnswers > 0;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative">
+      <div className="absolute top-4 left-4 text-white text-lg font-bold">
+        Total Points: {totalPoints}
+      </div>
       <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-8 max-w-2xl w-full text-white">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-4xl font-bold text-center text-yellow-300 animate-pulse">
-            Spell Chamber {level}
+            Spell Chamber level {level}
           </h2>
           <div className="flex gap-2">
-            {/* Render hearts (lives) */}
             {renderHearts()}
           </div>
         </div>
@@ -367,38 +358,27 @@ const GameScreen = ({
             )}
           </div>
           <div className="flex flex-wrap justify-center gap-4">
+          <button
+  onClick={handleSubmit}
+  disabled={submitDisabled || lives <= 0} // Add lives check here
+  className="bg-yellow-400 text-indigo-900 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
+>
+  <Check className="mr-2" /> Cast Spell
+</button>
             <button
-              onClick={handleSubmit}
-              disabled={submitDisabled}
-              className="bg-yellow-400 text-indigo-900 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
+              onClick={handleNextParagraph}
+              disabled={currentParagraphIndex >= paragraphs.length - 1}
+              className="bg-green-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out flex items-center"
             >
-              <Check className="mr-2" /> Cast Spell
+              <AlignJustify className="mr-2" /> Next Scroll
             </button>
-            {level < 10 && (
-              <>
-                <button
-                  onClick={handleNextParagraph}
-                  disabled={!submitDisabled}
-                  className="bg-green-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
-                >
-                  <AlignJustify className="mr-2" /> Next Scroll
-                </button>
-                <button
-                  onClick={handleNextLevel}
-                  disabled={!submitDisabled}
-                  className="bg-purple-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
-                >
-                  <ArrowRight className="mr-2" /> Next Chamber
-                </button>
-              </>
-            )}
-            {level === 10 && (
+            {level <= 10 && (
               <button
-                onClick={handleNextParagraph}
-                disabled={!submitDisabled}
-                className="bg-green-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
+                onClick={handleNextLevel}
+                disabled={!isNextLevelEnabled}
+                className="bg-purple-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out flex items-center"
               >
-                <AlignJustify className="mr-2" /> Final Scroll
+                <ArrowRight className="mr-2" /> Next Chamber
               </button>
             )}
             <button
@@ -413,13 +393,7 @@ const GameScreen = ({
               Time Remaining: {`${Math.floor(timer / 60).toString().padStart(2, '0')}:${(timer % 60).toString().padStart(2, '0')}`}
             </p>
           </div>
-          {returnTimer && !isTimeUp && (
-            <div className="text-center mt-6">
-              <p className="text-white text-lg">
-                Next game available in: {calculateCountdown()}
-              </p>
-            </div>
-          )}
+
           {isTimeUp && (
             <p className="text-center text-xl font-semibold text-red-500">
               Time's Up!
@@ -435,6 +409,4 @@ const GameScreen = ({
     </div>
   );
 };
-
 export default WordCountChallenge;
-
