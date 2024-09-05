@@ -323,11 +323,17 @@ const GameScreen = ({
   const isNextLevelEnabled = correctAnswers > 0;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative">
-      <div className="absolute top-4 left-4 text-white text-lg font-bold">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <button
+        onClick={onBackToHome}
+        className="absolute top-4 left-4 p-3 bg-purple-300 rounded-full hover:bg-purple-200 z-30"
+      >
+        <AlignJustify size={24} />
+      </button>
+      <div className="absolute top-4 right-4 text-white text-lg font-bold z-20">
         Total Points: {totalPoints}
       </div>
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 md:p-6 lg:p-8 max-w-full md:max-w-2xl w-full text-white">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 md:p-6 lg:p-8 max-w-full md:max-w-2xl w-full text-white relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-yellow-300 animate-pulse">
             Spell Chamber level {level}
@@ -337,12 +343,12 @@ const GameScreen = ({
           </div>
         </div>
         <div className="space-y-4 md:space-y-6">
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed bg-black/20 p-4 rounded-lg">
+          <p className="text-sm md:text-base lg:text-lg leading-relaxed bg-black/20 p-4 rounded-lg">
             {currentParagraph?.paragraph}
           </p>
           <div className="space-y-4">
             <label className="block">
-              <span className="text-base md:text-lg font-semibold">
+              <span className="text-sm md:text-base lg:text-lg font-semibold">
                 Count the magic word '{currentParagraph?.word1}':
               </span>
               <input
@@ -355,9 +361,10 @@ const GameScreen = ({
                 disabled={submitDisabled}
               />
             </label>
+            
             {isLevelTen && (
               <label className="block">
-                <span className="text-base md:text-lg font-semibold">
+                <span className="text-sm md:text-base lg:text-lg font-semibold">
                   Count the bonus word '{currentParagraph?.word2}':
                 </span>
                 <input
@@ -376,14 +383,14 @@ const GameScreen = ({
             <button
               onClick={handleSubmit}
               disabled={submitDisabled || lives <= 0}
-              className="bg-yellow-400 text-indigo-900 font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
+              className="bg-yellow-400 text-indigo-900 font-bold py-2 px-4 text-sm md:py-2 md:px-6 md:text-base rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center w-full md:w-auto z-20"
             >
               <Check className="mr-2" /> Cast Spell
             </button>
             <button
               onClick={handleNextParagraph}
               disabled={currentParagraphIndex >= paragraphs.length - 1}
-              className="bg-green-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out flex items-center"
+              className="bg-green-500 text-white font-bold py-2 px-4 text-sm md:py-2 md:px-6 md:text-base rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out flex items-center w-full md:w-auto z-20"
             >
               <AlignJustify className="mr-2" /> Next Scroll
             </button>
@@ -391,20 +398,14 @@ const GameScreen = ({
               <button
                 onClick={handleNextLevel}
                 disabled={!isNextLevelEnabled}
-                className="bg-purple-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out flex items-center"
+                className="bg-purple-500 text-white font-bold py-2 px-4 text-sm md:py-2 md:px-6 md:text-base rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out flex items-center w-full md:w-auto z-20"
               >
                 <ArrowRight className="mr-2" /> Next Chamber
               </button>
             )}
-            <button
-              onClick={onBackToHome}
-              className="bg-red-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-red-400 transition duration-300 ease-in-out"
-            >
-              <X className="mr-2" /> Home
-            </button>
           </div>
           <div className="text-center mt-4 md:mt-6">
-            <p className="text-white text-base md:text-lg lg:text-xl">
+            <p className="text-white text-sm md:text-base lg:text-lg">
               Time Remaining: {`${Math.floor(timer / 60).toString().padStart(2, '0')}:${(timer % 60).toString().padStart(2, '0')}`}
             </p>
           </div>
