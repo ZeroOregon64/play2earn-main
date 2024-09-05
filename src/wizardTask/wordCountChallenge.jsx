@@ -55,7 +55,7 @@ const WordCountChallenge = () => {
 
   const handleStartLevel = (level) => {
     setCurrentLevel(level);
-    setTimer(60);
+    setTimer(300);
     setIsTimeUp(false);
   };
 
@@ -309,8 +309,12 @@ const GameScreen = ({
 
   const handleNextLevel = () => {
     if (correctAnswers > 0) {
-      markLevelCompleted(level); // Ensure this function updates the `completedLevels` correctly
-      setCurrentLevel(level + 1);
+      if (level < 10) { // Prevents advancing beyond level 10
+        markLevelCompleted(level);
+        setCurrentLevel(level + 1);
+      } else {
+        setMessage("Congratulations! You have completed the final level.");
+      }
     } else {
       setMessage("You need at least one correct spell to unlock the next level.");
     }
@@ -319,26 +323,26 @@ const GameScreen = ({
   const isNextLevelEnabled = correctAnswers > 0;
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative">
       <div className="absolute top-4 left-4 text-white text-lg font-bold">
         Total Points: {totalPoints}
       </div>
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-8 max-w-2xl w-full text-white">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-4xl font-bold text-center text-yellow-300 animate-pulse">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 md:p-6 lg:p-8 max-w-full md:max-w-2xl w-full text-white">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-yellow-300 animate-pulse">
             Spell Chamber level {level}
           </h2>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-4 md:mt-0">
             {renderHearts()}
           </div>
         </div>
-        <div className="space-y-6">
-          <p className="text-lg leading-relaxed bg-black/20 p-4 rounded-lg">
+        <div className="space-y-4 md:space-y-6">
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed bg-black/20 p-4 rounded-lg">
             {currentParagraph?.paragraph}
           </p>
           <div className="space-y-4">
             <label className="block">
-              <span className="text-lg font-semibold">
+              <span className="text-base md:text-lg font-semibold">
                 Count the magic word '{currentParagraph?.word1}':
               </span>
               <input
@@ -351,9 +355,9 @@ const GameScreen = ({
                 disabled={submitDisabled}
               />
             </label>
-            {isLevelTen && ( 
+            {isLevelTen && (
               <label className="block">
-                <span className="text-lg font-semibold">
+                <span className="text-base md:text-lg font-semibold">
                   Count the bonus word '{currentParagraph?.word2}':
                 </span>
                 <input
@@ -368,18 +372,18 @@ const GameScreen = ({
               </label>
             )}
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
-          <button
-  onClick={handleSubmit}
-  disabled={submitDisabled || lives <= 0} // Add lives check here
-  className="bg-yellow-400 text-indigo-900 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
->
-  <Check className="mr-2" /> Cast Spell
-</button>
+          <div className="flex flex-col gap-4 md:flex-row md:gap-6">
+            <button
+              onClick={handleSubmit}
+              disabled={submitDisabled || lives <= 0}
+              className="bg-yellow-400 text-indigo-900 font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 ease-in-out disabled:opacity-50 flex items-center"
+            >
+              <Check className="mr-2" /> Cast Spell
+            </button>
             <button
               onClick={handleNextParagraph}
               disabled={currentParagraphIndex >= paragraphs.length - 1}
-              className="bg-green-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out flex items-center"
+              className="bg-green-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-green-400 transition duration-300 ease-in-out flex items-center"
             >
               <AlignJustify className="mr-2" /> Next Scroll
             </button>
@@ -387,31 +391,31 @@ const GameScreen = ({
               <button
                 onClick={handleNextLevel}
                 disabled={!isNextLevelEnabled}
-                className="bg-purple-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out flex items-center"
+                className="bg-purple-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-purple-400 transition duration-300 ease-in-out flex items-center"
               >
                 <ArrowRight className="mr-2" /> Next Chamber
               </button>
             )}
             <button
               onClick={onBackToHome}
-              className="bg-red-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-red-400 transition duration-300 ease-in-out"
+              className="bg-red-500 text-white font-bold py-2 px-4 md:py-2 md:px-6 rounded-full shadow-lg hover:bg-red-400 transition duration-300 ease-in-out"
             >
               <X className="mr-2" /> Home
             </button>
           </div>
-          <div className="text-center mt-6">
-            <p className="text-white text-lg">
+          <div className="text-center mt-4 md:mt-6">
+            <p className="text-white text-base md:text-lg lg:text-xl">
               Time Remaining: {`${Math.floor(timer / 60).toString().padStart(2, '0')}:${(timer % 60).toString().padStart(2, '0')}`}
             </p>
           </div>
-
+  
           {isTimeUp && (
-            <p className="text-center text-xl font-semibold text-red-500">
+            <p className="text-center text-lg md:text-xl lg:text-2xl font-semibold text-red-500">
               Time's Up!
             </p>
           )}
           {message && (
-            <p className="text-center text-xl font-semibold text-yellow-300">
+            <p className="text-center text-lg md:text-xl lg:text-2xl font-semibold text-yellow-300">
               {message}
             </p>
           )}
