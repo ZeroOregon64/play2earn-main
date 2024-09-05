@@ -55,7 +55,7 @@ const WordCountChallenge = () => {
 
   const handleStartLevel = (level) => {
     setCurrentLevel(level);
-    setTimer(300);
+    setTimer(450);
     setIsTimeUp(false);
   };
 
