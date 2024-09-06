@@ -16,6 +16,22 @@ const WordCountChallenge = () => {
   const [submitDisabled, setSubmitDisabled] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
 
+   // Add the share function
+   const handleShareTask = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'Word Wizard Challenge',
+          text: 'Check out this cool word count challenge game!',
+          url: window.location.href,
+        })
+        .then(() => console.log('Task shared successfully!'))
+        .catch((error) => console.error('Error sharing task:', error));
+    } else {
+      console.error('Web Share API is not supported in this browser.');
+    }
+  };
+
   useEffect(() => {
     const storedLevels = JSON.parse(localStorage.getItem('completedLevels')) || [];
     setCompletedLevels(storedLevels);
@@ -116,6 +132,7 @@ const WordCountChallenge = () => {
           onStartLevel={handleStartLevel}
           completedLevels={completedLevels}
           totalPoints={totalPoints} 
+          onShareTask={handleShareTask} // Pass the share handler to HomeScreen
         />
       ) : (
         <GameScreen
@@ -139,7 +156,6 @@ const WordCountChallenge = () => {
           setReturnTimer={setReturnTimer}
           markLevelCompleted={markLevelCompleted}
           setCurrentLevel={setCurrentLevel}
-          
         />
       )}
       {fetchError && (
@@ -151,28 +167,34 @@ const WordCountChallenge = () => {
   );
 };
 
-const HomeScreen = ({ onStartLevel, completedLevels, totalPoints }) => {
+
+const HomeScreen = ({ onStartLevel, completedLevels, totalPoints, onShareTask }) => {
   const initialMaxUnlockedLevel = Math.max(...completedLevels, 1);
   const [currentLevel, setCurrentLevel] = useState(initialMaxUnlockedLevel);
 
   // Function to determine if a level button should be unlocked
   const isLevelUnlocked = (level) => {
-    return level ===  0;
+    return level === 0;
   };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
       <h1 className="text-5xl md:text-6xl font-bold mb-8 text-center animate-pulse">
         Word Wizard Challenge
       </h1>
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => onStartLevel(1)}
-          className="py-4 px-6 rounded-xl shadow-lg bg-purple-400 text-white font-semibold hover:bg-purple-700"
-        >
-          Start Game
-        </button>
-      </div>
+      <div className="flex items-center gap-4 mb-6">
+  <button
+    onClick={() => onStartLevel(1)}
+    className="py-4 px-6 rounded-xl shadow-lg bg-purple-400 text-white font-semibold hover:bg-purple-700"
+  >
+    Start Game
+  </button>
+  <button
+    onClick={onShareTask}
+    className="py-4 px-6 rounded-xl shadow-lg bg-purple-400 text-white font-semibold hover:bg-purple-700"
+  >
+    Share Task
+  </button>
+</div>
       <div className="text-lg mb-6 text-white">
         Total Points: {totalPoints}
       </div>
@@ -180,7 +202,6 @@ const HomeScreen = ({ onStartLevel, completedLevels, totalPoints }) => {
         {[...Array(10)].map((_, index) => {
           const level = index + 1;
           const isUnlocked = isLevelUnlocked(level);
-
           return (
             <button
               key={index}
