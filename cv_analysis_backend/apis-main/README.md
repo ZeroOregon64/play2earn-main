@@ -19,6 +19,7 @@ source venv/bin/activate # On Windows, use `venv\Scripts\activate`
 Create .env file. Copy the required environment variables from env_example
 
 THIS CODE AND THE WHOLE PLAY2EARN CODE REQUIRES JWT_SECRET_KEY.
+
 PLEASE MAKE SURE TO HAVE JWT SECRET KEY SAME AS NODE JS's SECRET KEY.
 
 3. Install Dependencies
