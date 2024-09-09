@@ -7,7 +7,7 @@ This project provides a backend service for user authentication and CV analysis.
 ## Prerequisites
 
 - Python 3.8+
-- MySQL
+- MongoDB
 - pip (Python package installer)
 
 ## Setup Instructions
