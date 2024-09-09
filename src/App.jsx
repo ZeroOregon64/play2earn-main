@@ -18,7 +18,12 @@ import Survey from "./components/surveyTasks/survey";
 import Wordify from "./components/Wordify/Wordify";
 import FollowTask from "./components/FollowTask/FollowTask";
 import AudioTranscription from "./components/Audios/AudioTranscription";
+import CVUploadingPage from "./components/CvAnalysis/CVUploadingPage";
+import ProjectDescriptionForm from "./components/CvAnalysis/ProjectDescriptionFrom";
+import TalentsFound from "./components/CvAnalysis/TalentsFound/TalentsFound";
+import CVLandingPage from "./components/CvAnalysis/LandingPage/LandingPage";
 import { AuthProvider } from "./components/globalStateForAuth";
+
 
 const App = () => {
   return (
@@ -39,6 +44,20 @@ const App = () => {
               path="/AudioTranscription"
               element={<AudioTranscription />}
             />
+            <Route path="/cv-home" element={<CVLandingPage />} />
+            <Route
+              path="/uploadCV"
+              element={<CVUploadingPage />}
+            />
+            <Route
+              path="/recruit"
+              element={<ProjectDescriptionForm />}
+            />
+            <Route
+              path="/talents-found"
+              element={<TalentsFound />}
+            />
+
             {/* Add other routes here */}
 
             {/* foorter routes */}

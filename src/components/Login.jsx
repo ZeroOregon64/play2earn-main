@@ -32,11 +32,12 @@ const LoginPopup = ({
         password,
       });
 
-      console.log(response.data);
-      if (response.data === "success") {
+      console.log(response.data, "ss", response.data.token);
+      if (response.data.message === "success") {
         if (role === "User") {
           userLoginStatusDone();
           onClose();
+          localStorage.setItem('access_token', response.data.token);
           alert("Welcome to play2earn");
         } else if (role === "Admin") {
           navigate("/dashboard");

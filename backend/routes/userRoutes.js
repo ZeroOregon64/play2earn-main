@@ -77,13 +77,15 @@ router.post("/sign_up", (request, response) => {
 // jwt token generator for log in
 
 const tokenGenerator = (payload) => {
-  const key = "PlayToEarn001122";
+  const key = process.env.JWT_SECRET || "PlayToEarn001122";
 
-  const exp = {
-    expiresIn: "1h",
+  const options = {
+    algorithm: 'HS256', // Specify the algorithm here
+    expiresIn: '1h' // Token expiration
   };
+  
 
-  const token = jwt.sign(payload, key, exp);
+  const token = jwt.sign(payload, key, options);
   return token;
 };
 
@@ -92,11 +94,11 @@ router.post("/log_in", (request, response) => {
   UserModel.findOne({ email: email }).then((user) => {
     if (user) {
       if (user.password === password) {
-        const payload = { id: UserModel.username };
+        const payload = { username: user.username };
         const uniqueToken = tokenGenerator(payload);
         user.token = uniqueToken;
         user.save();
-        response.json("success");
+        response.json({ token: uniqueToken, message: "success" });
       } else {
         response.json("The credentials are incorrect");
       }
